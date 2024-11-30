@@ -1,19 +1,39 @@
-async function postProject(title, description, goal, image) {
-  const url = `${import.meta.env.VITE_API_URL}/users/`;
+async function postProject(
+  title,
+  description,
+  goal,
+  image,
+  is_open,
+  category,
+  address,
+  suburb,
+  postcode,
+  country,
+  state
+) {
+  const url = `${import.meta.env.VITE_API_URL}/projects/`;
   const response = await fetch(url, {
     method: "POST", // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: username,
-      password: password,
-      email: email,
+      title: title,
+      description: description,
+      goal: goal,
+      image: image,
+      is_open: is_open,
+      category: category,
+      address: address,
+      suburb: suburb,
+      postcode: postcode,
+      country: country,
+      state: state,
     }),
   });
 
   if (!response.ok) {
-    const fallbackError = `Error trying to register`;
+    const fallbackError = `Error trying to make a project`;
 
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);
@@ -26,4 +46,4 @@ async function postProject(title, description, goal, image) {
   return await response.json();
 }
 
-export default postUser;
+export default postProject;
