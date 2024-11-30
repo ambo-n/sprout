@@ -1,5 +1,6 @@
 import { useState } from "react";
 import postUser from "../api/post-user.js";
+import useAuth from "../hooks/use-auth.js";
 
 function UserForm() {
   const [userDetails, setUserDetails] = useState({
@@ -18,16 +19,13 @@ function UserForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (userDetails.username && userDetails.password) {
+    if (userDetails.username && userDetails.password && userDetails.email) {
       postUser(
         userDetails.username,
         userDetails.password,
         userDetails.email
       ).then((response) => {
         window.localStorage.setItem("token", response.token);
-        setAuth({
-          token: response.token,
-        });
         navigate("/");
       });
     }
