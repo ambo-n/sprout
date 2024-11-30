@@ -13,7 +13,7 @@ async function postUser(username, password, email) {
   });
 
   if (!response.ok) {
-    const fallbackError = `Error trying to login`;
+    const fallbackError = `Error trying to register`;
 
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import postUsers from "../api/post-user";
+import postUser from "../api/post-user.js";
 
 function UserForm() {
   const [userDetails, setUserDetails] = useState({
@@ -10,11 +10,29 @@ function UserForm() {
 
   const handleChange = (event) => {
     const { id, value } = event.target;
-    setCredentials((prevUserDetails) => ({
+    setUserDetails((prevUserDetails) => ({
       ...prevUserDetails,
       [id]: value,
     }));
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (userDetails.username && userDetails.password) {
+      postUser(
+        userDetails.username,
+        userDetails.password,
+        userDetails.email
+      ).then((response) => {
+        window.localStorage.setItem("token", response.token);
+        setAuth({
+          token: response.token,
+        });
+        navigate("/");
+      });
+    }
+  };
+
   return (
     <form>
       <div>
@@ -44,7 +62,9 @@ function UserForm() {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Create New User</button>
+      <button type="submit" onClick={handleSubmit}>
+        Create New User
+      </button>
     </form>
   );
 }
