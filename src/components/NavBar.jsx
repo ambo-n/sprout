@@ -23,6 +23,7 @@ function NavBar() {
           <Link to="/login">Login</Link>
         )}
         <Link to="/users">Sign Up</Link>
+        <Link to="/projects">Create</Link>
       </nav>
       <Outlet />
     </div>
