@@ -3,10 +3,12 @@ async function postProject(
   description,
   goal,
   image,
+  is_open,
   category,
   address,
   suburb,
   postcode,
+  country,
   state
 ) {
   const url = `${import.meta.env.VITE_API_URL}/projects/`;
@@ -16,17 +18,19 @@ async function postProject(
     method: "POST", // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Token ${token}`,
     },
     body: JSON.stringify({
       title: title,
       description: description,
       goal: goal,
       image: image,
+      is_open: is_open,
       category: category,
       address: address,
       suburb: suburb,
       postcode: postcode,
+      country: country,
       state: state,
     }),
   });

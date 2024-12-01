@@ -1,12 +1,12 @@
 import { useState } from "react";
 import postProject from "../api/post-project.js";
-import { useContext } from "react";
+
 
 function ProjectForm() {
   const [projectDetails, setProjectDetails] = useState({
     title: "",
     description: "",
-    goal: 0,
+    goal: "",
     image: "",
     is_open: true,
     category: [1],
@@ -43,6 +43,7 @@ function ProjectForm() {
         projectDetails.description,
         projectDetails.goal,
         projectDetails.image,
+        projectDetails.is_open,
         projectDetails.category,
         projectDetails.address,
         projectDetails.suburb,
