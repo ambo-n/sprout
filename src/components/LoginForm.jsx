@@ -2,6 +2,9 @@ import { useState } from "react";
 import postLogin from "../api/post-login.js";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/use-auth.js";
+import { FaUserNinja } from "react-icons/fa6";
+import { RiLockPasswordFill } from "react-icons/ri";
+import "./LoginForm.css";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -32,30 +35,52 @@ function LoginForm() {
     }
   };
 
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    navigate("/users");
+  };
+
   return (
-    <form>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          placeholder="Enter username"
-          onChange={handleChange}
-        />
+    <div className="wrapper">
+      <div className="login">
+        <form>
+          <h1>Login</h1>
+          <div className="input-box">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Username"
+              required
+              onChange={handleChange}
+            />
+            <FaUserNinja className="icon" />
+          </div>
+          <div className="input-box">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+              onChange={handleChange}
+            />
+            <RiLockPasswordFill className="icon" />
+          </div>
+          <button type="submit" onClick={handleSubmit}>
+            Login
+          </button>
+          <div className="register-link">
+            <p>
+              Don't have an account?{" "}
+              <a href="#" onClick={handleSignUp}>
+                Register
+              </a>
+            </p>
+          </div>
+        </form>
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit" onClick={handleSubmit}>
-        Login
-      </button>
-    </form>
+    </div>
   );
 }
 
