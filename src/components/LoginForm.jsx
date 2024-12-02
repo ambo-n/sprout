@@ -5,6 +5,14 @@ import useAuth from "../hooks/use-auth.js";
 import { FaUserNinja } from "react-icons/fa6";
 import { RiLockPasswordFill } from "react-icons/ri";
 import "./LoginForm.css";
+import z from "zod";
+
+const loginSchema = z.object({
+  username: z.string().min(1, { message: "Username must not be empty" }),
+  password: z
+    .string()
+    .min(5, { message: "Password must be at least 5 characters long" }),
+});
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -24,8 +32,15 @@ function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (credentials.username && credentials.password) {
-      postLogin(credentials.username, credentials.password).then((response) => {
+    const result = loginSchema.safeParse(credentials);
+    if (!result.success) {
+      const error = result.error.errors?.[0];
+      if (error) {
+        alert(error.message);
+      }
+      return;
+    } else {
+      postLogin(result.data.username, result.data.password).then((response) => {
         window.localStorage.setItem("token", response.token);
         setAuth({
           token: response.token,
@@ -44,7 +59,7 @@ function LoginForm() {
     <div className="wrapper">
       <div className="login">
         <form>
-          <h1>Login</h1>
+          <h1>Welcome back!</h1>
           <div className="input-box">
             <label htmlFor="username">Username</label>
             <input
@@ -72,7 +87,7 @@ function LoginForm() {
           </button>
           <div className="register-link">
             <p>
-              Don't have an account?{" "}
+              Don't have an account?
               <a href="#" onClick={handleSignUp}>
                 Register
               </a>

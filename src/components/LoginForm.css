@@ -71,9 +71,7 @@ select {
   min-height: 100svh;
   min-height: 100vh;
   color: black;
-  background: url("../assets/background.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-color: #d2cccc;
 }
 
 .wrapper h1 {
@@ -84,7 +82,8 @@ select {
 }
 
 .wrapper .login {
-  background-color: rgb(138, 255, 183);
+  border: 3px solid #184b29;
+  background-color: #eaedf0;
   border-radius: 20px;
   padding: 30px 10px;
 }
@@ -123,7 +122,7 @@ select {
   background: transparent;
   border: none;
   outline: none;
-  border: 2px solid rgb(12, 71, 12);
+  border: 2px solid #184b29;
   border-radius: 40px;
   padding: 20px 45px 20px 20px;
 }
