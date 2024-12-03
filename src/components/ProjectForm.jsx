@@ -11,17 +11,22 @@ function ProjectForm() {
     goal: "",
     image: "",
     is_open: true,
-    category: [1],
+    category: "",
     address: "",
     suburb: "",
     postcode: "",
     country: "Australia",
-    state: "WA",
+    state: "",
   });
 
   const onChangeHandler = (event) => {
     const index = event.target.value;
     projectDetails.category = [parseInt(index)];
+  };
+
+  const onChangeHandlerState = (event) => {
+    projectDetails.state = event.target.value;
+    console.log(projectDetails.state);
   };
 
   const handleChange = (event) => {
@@ -125,7 +130,7 @@ function ProjectForm() {
         <input
           type="text"
           id="suburb"
-          placeholder="suburb"
+          placeholder="Suburb"
           onChange={handleChange}
         />
       </div>
@@ -140,12 +145,16 @@ function ProjectForm() {
       </div>
       <div>
         <label htmlFor="state">State</label>
-        <input
-          type="text"
-          id="state"
-          placeholder="postcode"
-          onChange={handleChange}
-        />
+        <select onChange={onChangeHandlerState}>
+          <option value="ACT">ACT</option>
+          <option value="NSW">NSW</option>
+          <option value="NT">NT</option>
+          <option value="QLD">QLD</option>
+          <option value="SA">SA</option>
+          <option value="TAS">TAS</option>
+          <option value="VIC">VIC</option>
+          <option value="WA">WA</option>
+        </select>
       </div>
       <button type="submit" onClick={handleSubmit}>
         Create New Project
