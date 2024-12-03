@@ -7,23 +7,23 @@
   font-family: "Noto Sans", sans-serif;
 }
 
-a {
-  text-decoration: none;
-  padding: 10px;
-  color: black;
-}
-
-a:hover {
-  text-underline-offset: 10px;
-  text-decoration: underline;
-  background-color: rgb(228, 140, 161);
-  color: black;
-}
-
 .navbar {
   min-height: 70px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 0 24px;
+}
+
+.navbar a {
+  text-decoration: none;
+  padding: 10px;
+  color: black;
+}
+
+.navbar a:hover {
+  text-underline-offset: 10px;
+  text-decoration: underline;
+  background-color: rgb(228, 140, 161);
+  color: black;
 }
