@@ -1,3 +1,14 @@
+body {
+  background-color: #f3eded;
+  margin: 3rem;
+}
+.banner {
+  border: 1px solid red;
+}
+
+.banner img {
+}
+
 #project-list {
   display: grid;
   grid-template-columns: 30% 30% 30%;
