@@ -1,8 +1,10 @@
 import { useState } from "react";
 import postProject from "../api/post-project.js";
-
+import useCategories from "../hooks/use-categories.js";
 
 function ProjectForm() {
+  const { categories } = useCategories();
+
   const [projectDetails, setProjectDetails] = useState({
     title: "",
     description: "",
@@ -16,6 +18,11 @@ function ProjectForm() {
     country: "Australia",
     state: "WA",
   });
+
+  const onChangeHandler = (event) => {
+    const index = event.target.value;
+    projectDetails.category = [parseInt(index)];
+  };
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -94,12 +101,15 @@ function ProjectForm() {
       </div>
       <div>
         <label htmlFor="category">Category</label>
-        <input
-          type="text"
-          id="category"
-          placeholder="Project's Category"
-          onChange={handleChange}
-        />
+        <select onChange={onChangeHandler}>
+          {categories.map((categoriesData, key) => {
+            return (
+              <option value={categoriesData.id} key={key}>
+                {categoriesData.description}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <div>
         <label htmlFor="address">Address</label>
