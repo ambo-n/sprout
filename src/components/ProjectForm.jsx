@@ -65,7 +65,7 @@ function ProjectForm() {
         projectDetails.state
       );
     }
-    navigate("/");
+    // navigate("/");
   };
 
   return (

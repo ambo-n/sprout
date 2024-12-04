@@ -1,5 +1,12 @@
 import { useParams } from "react-router-dom";
 import useProject from "../hooks/use-project";
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+} from "@vis.gl/react-google-maps";
+import "./ProjectPage.css";
 
 function ProjectPage() {
   // Here we use a hook that comes for free in react router called `useParams` to get the id from the URL so that we can pass it to our useProject hook.
@@ -22,6 +29,8 @@ function ProjectPage() {
     return <p>{error.message}</p>;
   }
 
+  // console.log(parseFloat(project.latitude));
+
   return (
     <div>
       <h2>{project.title}</h2>
@@ -37,6 +46,32 @@ function ProjectPage() {
           );
         })}
       </ul>
+      <div>
+        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
+          <Map
+            className="map"
+            defaultCenter={{
+              lat: parseFloat(project.latitude),
+              lng: parseFloat(project.longitude),
+            }}
+            defaultZoom={13}
+            mapId={import.meta.env.VITE_MAP_ID}
+            reuseMaps={true}
+            options={{
+              gestureHandling: "greedy",
+            }}
+          >
+            <AdvancedMarker
+              position={{
+                lat: parseFloat(project.latitude),
+                lng: parseFloat(project.longitude),
+              }}
+            >
+              <Pin />
+            </AdvancedMarker>
+          </Map>
+        </APIProvider>
+      </div>
     </div>
   );
 }
