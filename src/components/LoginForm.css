@@ -69,7 +69,7 @@ select {
   align-items: center;
   min-height: 100svh;
   min-height: 100vh;
-  color: black;
+  padding: 10px;
   background-color: #d2cccc;
 }
 
@@ -136,4 +136,10 @@ select {
   top: 50%;
   transform: translateY(70%);
   font-size: 20px;
+}
+
+@media (max-width: 584px) {
+  .login {
+    max-width: 100%;
+  }
 }
