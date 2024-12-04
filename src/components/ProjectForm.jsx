@@ -4,7 +4,7 @@ import useCategories from "../hooks/use-categories.js";
 import { useNavigate } from "react-router-dom";
 import "./ProjectForm.css";
 function ProjectForm() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { categories } = useCategories();
 
   const [projectDetails, setProjectDetails] = useState({
@@ -23,6 +23,7 @@ function ProjectForm() {
 
   const onChangeHandler = (event) => {
     const index = event.target.value;
+    console.log(index);
     projectDetails.category = [parseInt(index)];
   };
 
