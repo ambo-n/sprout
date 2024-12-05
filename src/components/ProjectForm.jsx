@@ -23,7 +23,6 @@ function ProjectForm() {
 
   const onChangeHandler = (event) => {
     const index = event.target.value;
-    console.log(index);
     projectDetails.category = [parseInt(index)];
   };
 
@@ -114,6 +113,10 @@ function ProjectForm() {
             <div className="input-box-project">
               <label htmlFor="category">Category</label>
               <select onChange={onChangeHandler}>
+                <option disabled selected value>
+                  {" "}
+                  -- select a category --{" "}
+                </option>
                 {categories.map((categoriesData, key) => {
                   return (
                     <option value={categoriesData.id} key={key}>
@@ -153,6 +156,10 @@ function ProjectForm() {
             <div className="input-box-project">
               <label htmlFor="state">State</label>
               <select onChange={onChangeHandlerState}>
+                <option disabled selected value>
+                  {" "}
+                  -- select a state --{" "}
+                </option>
                 <option value="ACT">ACT</option>
                 <option value="NSW">NSW</option>
                 <option value="NT">NT</option>
