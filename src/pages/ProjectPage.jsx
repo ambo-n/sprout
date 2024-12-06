@@ -29,8 +29,6 @@ function ProjectPage() {
     return <p>{error.message}</p>;
   }
 
-  // console.log(parseFloat(project.latitude));
-
   return (
     <div>
       <h2>{project.title}</h2>

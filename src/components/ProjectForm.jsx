@@ -4,7 +4,7 @@ import useCategories from "../hooks/use-categories.js";
 import { useNavigate } from "react-router-dom";
 import "./ProjectForm.css";
 function ProjectForm() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { categories } = useCategories();
 
   const [projectDetails, setProjectDetails] = useState({
@@ -63,9 +63,10 @@ function ProjectForm() {
         projectDetails.postcode,
         projectDetails.country,
         projectDetails.state
-      );
+      ).then((response) => {
+        navigate("/project/" + response.id);
+      });
     }
-    // navigate("/");
   };
 
   return (
@@ -112,10 +113,9 @@ function ProjectForm() {
             </div>
             <div className="input-box-project">
               <label htmlFor="category">Category</label>
-              <select onChange={onChangeHandler}>
-                <option disabled selected value>
-                  {" "}
-                  -- select a category --{" "}
+              <select onChange={onChangeHandler} defaultValue={"DEFAULT"}>
+                <option value="DEFAULT" disabled>
+                  --select a category--
                 </option>
                 {categories.map((categoriesData, key) => {
                   return (
@@ -155,10 +155,9 @@ function ProjectForm() {
             </div>
             <div className="input-box-project">
               <label htmlFor="state">State</label>
-              <select onChange={onChangeHandlerState}>
-                <option disabled selected value>
-                  {" "}
-                  -- select a state --{" "}
+              <select onChange={onChangeHandlerState} defaultValue={"DEFAULT"}>
+                <option value="DEFAULT" disabled>
+                  --select a state--
                 </option>
                 <option value="ACT">ACT</option>
                 <option value="NSW">NSW</option>
