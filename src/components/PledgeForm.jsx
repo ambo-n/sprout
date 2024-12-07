@@ -73,7 +73,7 @@ function PledgeForm() {
         <label>No</label>
         <div>
           <button type="submit" onClick={handleSubmit}>
-            submit
+            DONATE
           </button>
         </div>
       </form>

@@ -1,10 +1,74 @@
 .map {
-  width: 1000px;
+  width: 600px;
   height: 600px;
 }
 
-.project-page-container {
+.project {
+  margin: 2rem;
+}
+
+.project h1 {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.project-page-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(cal(width/2), 1fr));
+  gap: 30px;
+  justify-content: center;
+  padding-top: 50px;
+  overflow: hidden;
+}
+
+.project-detail img {
+  width: 600px;
+}
+
+.pledge {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 80px;
+  padding-top: 40px;
+}
+
+.pledge button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  margin: 20px 0 20px 0;
+  cursor: pointer;
+  font-weight: 500;
+  background: linear-gradient(rgb(212, 238, 117), green);
+}
+
+.pledge input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid #184b29;
+  border-radius: 40px;
+  padding: 20px 45px 20px 20px;
+}
+
+.pledge input::placeholder {
+  color: rgb(172, 163, 163);
+}
+
+.pledge-form {
+  border: 3px solid #184b29;
+  background-color: #eaedf0;
+  border-radius: 20px;
+}
+
+.pledges {
+  width: 50%;
+  height: 50%;
+  border: 3px solid #184b29;
+  background-color: #eaedf0;
+  border-radius: 20px;
 }

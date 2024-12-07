@@ -40,71 +40,75 @@ function ProjectPage() {
   }
 
   return (
-    <div>
+    <div className="project">
       <h1>{project.title}</h1>
-      <div className="project-page-container">
-        <div className="project-details">
+      <p>
+        Created on:{" "}
+        {new Date(project.date_created).toLocaleDateString("en-au", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </p>
+      <p> Status: {project.is_open ? "Open" : "Closed"}</p>
+      <div className="project-page-grid-container">
+        <div className="project-detail">
           <img src={project.image} />
-          <h3>
-            Created on:{" "}
-            {new Date(project.date_created).toLocaleDateString("en-au", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </h3>
         </div>
-        <div className="make-pledge">
-          <PledgeForm />
-          <p> Status: {project.is_open ? "Open" : "Closed"}</p>
-        </div>
-      </div>
-      <div>
-        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
-          <Map
-            className="map"
-            defaultCenter={{
-              lat: parseFloat(project.latitude),
-              lng: parseFloat(project.longitude),
-            }}
-            defaultZoom={13}
-            mapId={import.meta.env.VITE_MAP_ID}
-            reuseMaps={true}
-            options={{
-              gestureHandling: "greedy",
-            }}
-          >
-            <AdvancedMarker
-              position={{
+        <div>
+          <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
+            <Map
+              className="map"
+              defaultCenter={{
                 lat: parseFloat(project.latitude),
                 lng: parseFloat(project.longitude),
               }}
+              defaultZoom={13}
+              mapId={import.meta.env.VITE_MAP_ID}
+              reuseMaps={true}
+              options={{
+                gestureHandling: "greedy",
+              }}
             >
-              <Pin />
-            </AdvancedMarker>
-          </Map>
-        </APIProvider>
+              <AdvancedMarker
+                position={{
+                  lat: parseFloat(project.latitude),
+                  lng: parseFloat(project.longitude),
+                }}
+              >
+                <Pin />
+              </AdvancedMarker>
+            </Map>
+          </APIProvider>
+        </div>
       </div>
       <div>
-        <p>project description</p>
+        <p>{project.description}</p>
       </div>
-      <div>
-        <h3>Pledges:</h3>
-        <ul>
-          {project.pledges.map((pledgeData, key) => {
-            if (pledgeData.anonymous) {
-              return (
-                <li key={key}>
-                  ${pledgeData.amount} from {pledgeData.support}{" "}
-                </li>
-              );
-            } else {
-              return (
-                <li key={key}>${pledgeData.amount} from a secret supporter</li>
-              );
-            }
-          })}
-        </ul>
+      <div className="pledge">
+        <div className="pledge-form">
+          <PledgeForm />
+        </div>
+        <div className="pledges">
+          <h3>Pledges:</h3>
+          <ul>
+            {project.pledges.map((pledgeData, key) => {
+              if (pledgeData.anonymous) {
+                return (
+                  <li key={key}>
+                    ${pledgeData.amount} from {pledgeData.support}{" "}
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={key}>
+                    ${pledgeData.amount} from a secret supporter
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
