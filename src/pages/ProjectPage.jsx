@@ -29,21 +29,36 @@ function ProjectPage() {
     return <p>{error.message}</p>;
   }
 
-  // console.log(new Date(project.date_created).toDateString());
+  let pledgeAmount = project.pledges.map((pledgeData, key) => {
+    return pledgeData.amount;
+  });
+
+  let total = 0;
+
+  for (let i = 0; i < pledgeAmount.length; i++) {
+    total += pledgeAmount[i];
+  }
 
   return (
     <div>
-      <h2>{project.title}</h2>
-      <h3>
-        Created at:{" "}
-        {new Date(project.date_created).toLocaleDateString("en-au", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })}
-      </h3>
-      <h3>{`Status: ${project.is_open}`}</h3>
-
+      <h1>{project.title}</h1>
+      <div className="project-page-container">
+        <div className="project-details">
+          <img src={project.image} />
+          <h3>
+            Created on:{" "}
+            {new Date(project.date_created).toLocaleDateString("en-au", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </h3>
+        </div>
+        <div className="make-pledge">
+          <PledgeForm />
+          <p> Status: {project.is_open ? "Open" : "Closed"}</p>
+        </div>
+      </div>
       <div>
         <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
           <Map
@@ -70,24 +85,26 @@ function ProjectPage() {
           </Map>
         </APIProvider>
       </div>
-      <h3>Pledges:</h3>
-      <ul>
-        {project.pledges.map((pledgeData, key) => {
-          if (pledgeData.anonymous === true) {
-            return (
-              <li key={key}>
-                ${pledgeData.amount} from {pledgeData.support}{" "}
-              </li>
-            );
-          } else {
-            return (
-              <li key={key}>${pledgeData.amount} from a secret supporter</li>
-            );
-          }
-        })}
-      </ul>
       <div>
-        <PledgeForm />
+        <p>project description</p>
+      </div>
+      <div>
+        <h3>Pledges:</h3>
+        <ul>
+          {project.pledges.map((pledgeData, key) => {
+            if (pledgeData.anonymous) {
+              return (
+                <li key={key}>
+                  ${pledgeData.amount} from {pledgeData.support}{" "}
+                </li>
+              );
+            } else {
+              return (
+                <li key={key}>${pledgeData.amount} from a secret supporter</li>
+              );
+            }
+          })}
+        </ul>
       </div>
     </div>
   );
