@@ -29,10 +29,19 @@ function ProjectPage() {
     return <p>{error.message}</p>;
   }
 
+  // console.log(new Date(project.date_created).toDateString());
+
   return (
     <div>
       <h2>{project.title}</h2>
-      <h3>Created at: {project.date_created}</h3>
+      <h3>
+        Created at:{" "}
+        {new Date(project.date_created).toLocaleDateString("en-au", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </h3>
       <h3>{`Status: ${project.is_open}`}</h3>
 
       <div>
@@ -67,12 +76,12 @@ function ProjectPage() {
           if (pledgeData.anonymous === true) {
             return (
               <li key={key}>
-                {pledgeData.amount} from {pledgeData.support}{" "}
+                ${pledgeData.amount} from {pledgeData.support}{" "}
               </li>
             );
           } else {
             return (
-              <li key={key}>{pledgeData.amount} from your secret supporter</li>
+              <li key={key}>${pledgeData.amount} from a secret supporter</li>
             );
           }
         })}
