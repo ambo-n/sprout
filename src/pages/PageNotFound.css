@@ -1,0 +1,24 @@
+.not-found-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 2rem;
+  justify-content: center;
+}
+
+.not-found-container img {
+  border: 2px solid black;
+}
+
+.not-found-container h1 {
+  font-size: 6rem;
+  font-weight: 600;
+}
+
+.not-found-container p {
+  padding: 10px;
+}
+
+.not-found-container-items {
+  align-items: center;
+}

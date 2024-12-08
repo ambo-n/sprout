@@ -10,8 +10,6 @@ function NavBar() {
     setAuth({ token: null });
   };
 
-  console.log(auth);
-
   return (
     <header>
       <div>

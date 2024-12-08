@@ -8,8 +8,10 @@ import {
 } from "@vis.gl/react-google-maps";
 import "./ProjectPage.css";
 import PledgeForm from "../components/PledgeForm";
+import { useNavigate } from "react-router-dom";
 
 function ProjectPage() {
+  const navigate = useNavigate();
   const { id } = useParams();
   // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error } = useProject(id);
@@ -26,7 +28,7 @@ function ProjectPage() {
   }
 
   if (error) {
-    return <p>{error.message}</p>;
+    return navigate("*");
   }
 
   let pledgeAmount = project.pledges.map((pledgeData, key) => {
