@@ -82,32 +82,37 @@ function ProjectPage() {
           </APIProvider>
         </div>
       </div>
-      <div>
+      <div className="campaign-description">
+        <h2>Campaign description</h2>
         <p>{project.description}</p>
       </div>
       <div className="pledge">
-        <div className="pledge-form">
+        <div>
           <PledgeForm />
         </div>
-        <div className="pledges">
-          <h3>Pledges:</h3>
-          <ul>
-            {project.pledges.map((pledgeData, key) => {
-              if (pledgeData.anonymous) {
-                return (
-                  <li key={key}>
-                    ${pledgeData.amount} from {pledgeData.support}{" "}
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={key}>
-                    ${pledgeData.amount} from a secret supporter
-                  </li>
-                );
-              }
-            })}
-          </ul>
+        <div className="pledges-container">
+          <div className="pledge-list">
+            <h2>Pledges:</h2>
+            <div>
+              <ul>
+                {project.pledges.map((pledgeData, key) => {
+                  if (pledgeData.anonymous) {
+                    return (
+                      <li key={key}>
+                        ${pledgeData.amount} from {pledgeData.support}{" "}
+                      </li>
+                    );
+                  } else {
+                    return (
+                      <li key={key}>
+                        ${pledgeData.amount} from a secret supporter
+                      </li>
+                    );
+                  }
+                })}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,55 @@
+.pledge-form-container {
+  border: 2px solid rgb(170, 224, 185);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.pledge-form {
+  border-radius: 20px;
+  margin: 2rem;
+}
+.pledge-form h2 {
+  font-weight: 500;
+  padding: 20px 0 20px 0;
+}
+
+.pledge-form input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #184b29;
+  padding: 20px 45px 20px 20px;
+  margin: 10px 0 10px 0;
+}
+
+.pledge-form button {
+  width: 70%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  margin: 20px 0 20px 0;
+  cursor: pointer;
+  font-weight: 500;
+  background: linear-gradient(rgb(212, 238, 117), green);
+}
+.pledge-form input::placeholder {
+  color: rgb(172, 163, 163);
+}
+
+.anonymous-details p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.anonymous-selection {
+  display: flex;
+}
+
+.anonymous-selection label {
+  padding-left: 10px;
+}
+
+.input-box {
+}
