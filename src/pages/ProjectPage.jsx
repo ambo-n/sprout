@@ -9,6 +9,7 @@ import {
 import "./ProjectPage.css";
 import PledgeForm from "../components/PledgeForm";
 import { useNavigate } from "react-router-dom";
+// import ProgressBar from "../components/ProgressBar";
 
 function ProjectPage() {
   const navigate = useNavigate();
@@ -31,15 +32,10 @@ function ProjectPage() {
     return navigate("*");
   }
 
-  let pledgeAmount = project.pledges.map((pledgeData, key) => {
-    return pledgeData.amount;
-  });
-
-  let total = 0;
-
-  for (let i = 0; i < pledgeAmount.length; i++) {
-    total += pledgeAmount[i];
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/project/edit/" + id);
+  };
 
   return (
     <div className="project">
@@ -53,10 +49,16 @@ function ProjectPage() {
         })}
       </p>
       <p> Status: {project.is_open ? "Open" : "Closed"}</p>
+      <button type="submit" onClick={handleSubmit}>
+        Edit project detail
+      </button>
       <div className="project-page-grid-container">
         <div className="project-detail">
           <img src={project.image} />
         </div>
+        {/* <div>
+          <ProgressBar />
+        </div> */}
         <div>
           <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
             <Map

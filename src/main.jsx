@@ -7,6 +7,7 @@ import ProjectPage from "./pages/ProjectPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import NewProject from "./pages/NewProject.jsx";
+import EditPage from "./pages/EditPage.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 
 import NavBar from "./components/NavBar.jsx";
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "/users", element: <UserPage /> },
       { path: "/projects", element: <NewProject /> },
       { path: "/project/:id", element: <ProjectPage /> },
+      { path: "project/edit/:id", element: <EditPage /> },
       { path: "*", element: <PageNotFound /> },
     ],
   },
