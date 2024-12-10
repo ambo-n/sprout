@@ -5,11 +5,11 @@ function OwnedPledges() {
   const { pledge, error } = usePledge();
   return (
     <div>
-      {/* <ul>
+      <ul>
         {pledge.map((pledgeData, key) => {
-          return <li key={key}>{pledgeData.project}</li>;
+          return <li key={key}>{pledgeData.support}</li>;
         })}
-      </ul> */}
+      </ul>
     </div>
   );
 }
