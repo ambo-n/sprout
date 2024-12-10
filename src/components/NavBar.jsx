@@ -22,7 +22,8 @@ function NavBar() {
           ) : (
             <Link to="/login">Login</Link>
           )}
-          <Link to="/projects">Create</Link>
+          {auth.token ? <Link to="/projects">Create</Link> : null}
+          {auth.token ? <Link to="/dashboard">Activity</Link> : null}
         </nav>
         <Outlet />
       </div>

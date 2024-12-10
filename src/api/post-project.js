@@ -35,6 +35,9 @@ async function postProject(
   });
 
   if (!response.ok) {
+    if (response.status === 401) {
+      alert("log in");
+    }
     const fallbackError = `Error trying to make a project`;
 
     const data = await response.json().catch(() => {

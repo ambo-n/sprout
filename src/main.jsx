@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import NewProject from "./pages/NewProject.jsx";
 import EditPage from "./pages/EditPage.jsx";
+import UserDashboard from "./pages/UserDashboard.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 
 import NavBar from "./components/NavBar.jsx";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/projects", element: <NewProject /> },
       { path: "/project/:id", element: <ProjectPage /> },
       { path: "project/edit/:id", element: <EditPage /> },
+      { path: "/dashboard", element: <UserDashboard /> },
       { path: "*", element: <PageNotFound /> },
     ],
   },

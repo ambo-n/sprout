@@ -40,13 +40,18 @@ function LoginForm() {
       }
       return;
     } else {
-      postLogin(result.data.username, result.data.password).then((response) => {
-        window.localStorage.setItem("token", response.token);
-        setAuth({
-          token: response.token,
+      postLogin(result.data.username, result.data.password)
+        .then((response) => {
+          window.localStorage.setItem("user_id", response.user_id);
+          window.localStorage.setItem("token", response.token);
+          setAuth({
+            token: response.token,
+          });
+          navigate("/");
+        })
+        .catch((error) => {
+          alert(error);
         });
-        navigate("/");
-      });
     }
   };
 

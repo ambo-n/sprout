@@ -3,6 +3,11 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.pledges-container {
+  max-height: 600px;
+  overflow: scroll;
+}
+
 .pledge-form {
   border-radius: 20px;
   margin: 2rem;
