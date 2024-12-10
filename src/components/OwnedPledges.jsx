@@ -1,13 +1,15 @@
 import usePledge from "../hooks/use-pledge";
 
 function OwnedPledges() {
-  const userId = window.localStorage.getItem("user_id");
-  const { pledge, error } = usePledge();
+  const userId = parseInt(window.localStorage.getItem("user_id"));
+  const { pledge, isLoading, error } = usePledge();
   return (
     <div>
       <ul>
         {pledge.map((pledgeData, key) => {
-          return <li key={key}>{pledgeData.support}</li>;
+          if (pledgeData.support === userId) {
+            return <li key={key}>{pledgeData.project}</li>;
+          }
         })}
       </ul>
     </div>

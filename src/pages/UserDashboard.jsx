@@ -6,10 +6,10 @@ function UserDashboard() {
     <div>
       <div>
         <h1>UserDetails</h1>
-        <OwnedPledges />
       </div>
       <div>
         <h1>Donations</h1>
+        <OwnedPledges />
       </div>
       <div>
         <h1>Your Projects</h1>
