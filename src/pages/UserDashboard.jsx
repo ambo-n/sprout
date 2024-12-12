@@ -2,6 +2,7 @@ import OwnedPledges from "../components/OwnedPledges";
 import OwnedProjects from "../components/OwnedProjects";
 import useUser from "../hooks/use-user";
 import { Link } from "react-router-dom";
+import "./UserDashboard.css";
 
 function UserDashboard() {
   const userId = window.localStorage.getItem("user_id");
@@ -15,11 +16,13 @@ function UserDashboard() {
   }
 
   return (
-    <div>
+    <div className="dashboard-container">
       <div>
-        <h1>UserDetails</h1>
-        <h2>Username: </h2>
-        <p>{userDetails.username}</p>
+        <h1>Welcome back, {userDetails.username}</h1>
+        <h2>
+          Username: <span>{userDetails.username}</span>
+        </h2>
+
         <h2>Email: </h2>
         <p> {userDetails.email}</p>
       </div>

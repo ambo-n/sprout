@@ -1,0 +1,16 @@
+.dashboard-container {
+  margin: 2rem;
+}
+
+.dashboard-container h1 {
+  font-size: 1.75rem;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+.dashboard-container h2 {
+  font-size: 1rem;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  margin: 10px 0 10px 0;
+}
