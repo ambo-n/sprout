@@ -1,6 +1,6 @@
 async function getPledges() {
   const url = `${import.meta.env.VITE_API_URL}/pledges`;
-  const token = "d4bff4a0b410dd7a7a1b7b21c79146234c579664";
+  const token = `${import.meta.env.VITE_ADMIN_TOKEN}`;
   const response = await fetch(url, {
     method: "GET",
     headers: {
