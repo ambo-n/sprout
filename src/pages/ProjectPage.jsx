@@ -32,7 +32,16 @@ function ProjectPage() {
   if (error) {
     return navigate("*");
   }
+  let pledgeAmountData = project.pledges.map((pledgeData) => {
+    return pledgeData.amount;
+  });
 
+  let currentAmount = 0;
+
+  for (let i = 0; i < pledgeAmountData.length; i++) {
+    currentAmount += pledgeAmountData[i];
+  }
+  console.log(currentAmount);
   return (
     <div className="project">
       <Link to="/">{<IoIosArrowBack />} Back to home page</Link>
@@ -50,9 +59,6 @@ function ProjectPage() {
         <div className="project-detail">
           <img src={project.image} />
         </div>
-        {/* <div>
-          <ProgressBar />
-        </div> */}
         <div>
           <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
             <Map
@@ -83,6 +89,17 @@ function ProjectPage() {
       <div className="campaign-description">
         <h2>Campaign description</h2>
         <p>{project.description}</p>
+      </div>
+      <div>
+        <label htmlForfor="progress-bar">
+          ${currentAmount} raised out of ${project.goal}
+        </label>
+        <progress
+          id="progress-bar"
+          value={currentAmount}
+          max={project.goal}
+          className="progress-bar"
+        ></progress>
       </div>
       <div className="pledge">
         <div>
