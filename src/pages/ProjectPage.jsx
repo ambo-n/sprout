@@ -71,7 +71,7 @@ function ProjectPage() {
               mapId={import.meta.env.VITE_MAP_ID}
               reuseMaps={true}
               options={{
-                gestureHandling: "greedy",
+                gestureHandling: "cooperative",
               }}
             >
               <AdvancedMarker

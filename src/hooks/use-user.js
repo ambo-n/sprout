@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import getUser from "../api/get-user";
 
 export default function useUser(userId) {
-  const [userDetails, setUserDetails] = useState();
+  const [userDetails, setUserDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 

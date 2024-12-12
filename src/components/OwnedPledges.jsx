@@ -1,14 +1,25 @@
 import usePledge from "../hooks/use-pledge";
+import { Link } from "react-router-dom";
 
 function OwnedPledges() {
   const userId = parseInt(window.localStorage.getItem("user_id"));
   const { pledge, isLoading, error } = usePledge();
+
   return (
     <div>
       <ul>
         {pledge.map((pledgeData, key) => {
           if (pledgeData.support === userId) {
-            return <li key={key}>{pledgeData.project}</li>;
+            return (
+              <li key={key}>
+                You have donated ${pledgeData.amount} to{" "}
+                {
+                  <Link to={`/project/${pledgeData.project}`}>
+                    {pledgeData.project}
+                  </Link>
+                }{" "}
+              </li>
+            );
           }
         })}
       </ul>
