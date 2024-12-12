@@ -16,7 +16,6 @@ import { IoIosArrowBack } from "react-icons/io";
 function ProjectPage() {
   const navigate = useNavigate();
   const { id } = useParams();
-  // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error } = useProject(id);
 
   if (isLoading) {
@@ -34,11 +33,6 @@ function ProjectPage() {
     return navigate("*");
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate("/project/edit/" + id);
-  };
-
   return (
     <div className="project">
       <Link to="/">{<IoIosArrowBack />} Back to home page</Link>
@@ -52,9 +46,6 @@ function ProjectPage() {
         })}
       </p>
       <p> Status: {project.is_open ? "Open" : "Closed"}</p>
-      <button type="submit" onClick={handleSubmit}>
-        Edit project detail
-      </button>
       <div className="project-page-grid-container">
         <div className="project-detail">
           <img src={project.image} />

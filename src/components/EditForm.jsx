@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import getProject from "../api/get-project";
 
 function EditForm() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [projectDetails, setProjectDetails] = useState({
     title: "",
@@ -42,6 +43,10 @@ function EditForm() {
       .catch((error) => console.log(error));
   }, []);
 
+  const handleCancle = (event) => {
+    event.preventDefault();
+    navigate("/project/" + id);
+  };
   const handleChange = (event) => {
     const { id, value } = event.target;
     setProjectDetails((prevProjectDetails) => ({
@@ -172,9 +177,9 @@ function EditForm() {
         </div>
         <div className="input-box-project">
           <label htmlFor="state">State</label>
-          <select onChange={handleChange} defaultValue={"DEFAULT"}>
-            <option value="DEFAULT" disabled>
-              --select a state--
+          <select onChange={handleChange} defaultValue={projectDetails.state}>
+            <option value={projectDetails.state} disabled>
+              {projectDetails.state}
             </option>
             <option value="ACT">ACT</option>
             <option value="NSW">NSW</option>
@@ -189,6 +194,9 @@ function EditForm() {
       </div>
       <button type="submit" onClick={handleSubmit}>
         Submit
+      </button>
+      <button type="cancel" onClick={handleCancle}>
+        Cancel
       </button>
     </form>
   );
