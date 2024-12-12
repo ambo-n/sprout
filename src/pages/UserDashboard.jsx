@@ -20,6 +20,8 @@ function UserDashboard() {
         <h1>UserDetails</h1>
         <h2>Username: </h2>
         <p>{userDetails.username}</p>
+        <h2>Email: </h2>
+        <p> {userDetails.email}</p>
       </div>
       <div>
         <h1>Donations</h1>

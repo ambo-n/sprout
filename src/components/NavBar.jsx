@@ -23,7 +23,7 @@ function NavBar() {
             <Link to="/login">Login</Link>
           )}
           {auth.token ? <Link to="/projects">Create</Link> : null}
-          {auth.token ? <Link to="/dashboard">Activity</Link> : null}
+          {auth.token ? <Link to="/dashboard">Dashboard</Link> : null}
         </nav>
         <Outlet />
       </div>

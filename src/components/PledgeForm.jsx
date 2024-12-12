@@ -2,8 +2,12 @@ import { useState } from "react";
 import postPledge from "../api/post-pledge";
 import { useParams } from "react-router-dom";
 import "./PledgeForm.css";
-
+import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/use-auth.js";
+import { Link } from "react-router-dom";
 function PledgeForm() {
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [pledge, setPledge] = useState({
     amount: "",
@@ -24,17 +28,21 @@ function PledgeForm() {
     pledge.anonymous = event.target.value;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (pledge.amount && pledge.anonymous) {
-      postPledge(
-        pledge.amount,
-        pledge.comment,
-        pledge.anonymous,
-        pledge.project
-      );
+      try {
+        await postPledge(
+          pledge.amount,
+          pledge.comment,
+          pledge.anonymous,
+          pledge.project
+        );
+        navigate(0);
+      } catch (error) {
+        console.error("Error submitting pledge", error);
+      }
     }
-    console.log("Submit");
   };
 
   return (
@@ -47,7 +55,7 @@ function PledgeForm() {
             <input
               type="number"
               id="amount"
-              placeholder="Amount"
+              placeholder="Pledge Amount"
               onChange={handleChange}
             />
           </div>
@@ -92,9 +100,15 @@ function PledgeForm() {
             </div>
           </div>
           <div>
-            <button type="submit" onClick={handleSubmit}>
-              DONATE
-            </button>
+            {auth.token ? (
+              <button type="submit" onClick={handleSubmit}>
+                DONATE
+              </button>
+            ) : (
+              <button>
+                {<Link to="/login">Sign In to make a pledge</Link>}
+              </button>
+            )}
           </div>
         </form>
       </div>
