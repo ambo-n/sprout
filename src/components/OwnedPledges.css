@@ -1,0 +1,23 @@
+.owned-pledge-container {
+  border: 2px solid rgb(170, 224, 185);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: white;
+  position: relative;
+  max-width: 900px;
+  margin-bottom: 2rem;
+  max-height: 600px;
+  overflow: scroll;
+}
+
+.owned-pledge-container li {
+  /* width: 100%; */
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: rgba(137, 230, 149, 0.313);
+  padding: 20px 45px 20px 20px;
+  margin: 2rem;
+}

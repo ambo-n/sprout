@@ -41,7 +41,6 @@ function ProjectPage() {
   for (let i = 0; i < pledgeAmountData.length; i++) {
     currentAmount += pledgeAmountData[i];
   }
-  console.log(currentAmount);
   return (
     <div className="project">
       <Link to="/">{<IoIosArrowBack />} Back to home page</Link>
@@ -91,7 +90,7 @@ function ProjectPage() {
         <p>{project.description}</p>
       </div>
       <div>
-        <label htmlForfor="progress-bar">
+        <label htmlFor="progress-bar">
           ${currentAmount} raised out of ${project.goal}
         </label>
         <progress

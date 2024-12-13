@@ -2,6 +2,7 @@ import useUser from "../hooks/use-user";
 import { Link, Outlet } from "react-router-dom";
 import deleteProject from "../api/delete-project";
 import { useNavigate } from "react-router-dom";
+import "./OwnedProjects.css";
 
 function useConfirm(message, onConfirm, onAbort) {
   const confirm = (data) => {
@@ -46,9 +47,9 @@ function OwnedProjects() {
   );
 
   return (
-    <div>
+    <div className="owned-projects-container">
       <ul>
-        <div>
+        <div className="owned-project-content">
           {userDetails.owned_projects.map((ownedProjectData, key) => {
             return (
               <li key={key}>

@@ -1,12 +1,13 @@
 import usePledge from "../hooks/use-pledge";
 import { Link } from "react-router-dom";
+import "./OwnedPledges.css";
 
 function OwnedPledges() {
   const userId = parseInt(window.localStorage.getItem("user_id"));
   const { pledge, isLoading, error } = usePledge();
 
   return (
-    <div>
+    <div className="owned-pledge-container ">
       <ul>
         {pledge.map((pledgeData, key) => {
           if (pledgeData.support === userId) {

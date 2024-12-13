@@ -13,6 +13,8 @@
   justify-content: flex-start;
   align-items: center;
   padding: 0 24px;
+  border: 2px solid rgb(170, 224, 185);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .navbar a {
