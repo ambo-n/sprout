@@ -9,7 +9,7 @@ function UserDashboard() {
   const userId = window.localStorage.getItem("user_id");
   const { userDetails, isLoading, error } = useUser(userId);
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Fetching your data..</p>;
   }
 
   if (error) {
