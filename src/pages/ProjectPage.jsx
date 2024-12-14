@@ -113,7 +113,7 @@ function ProjectPage() {
                   if (pledgeData.anonymous === false) {
                     return (
                       <li key={key}>
-                        ${pledgeData.amount} from {pledgeData.support}{" "}
+                        ${pledgeData.amount} from {pledgeData.username}{" "}
                       </li>
                     );
                   } else {
