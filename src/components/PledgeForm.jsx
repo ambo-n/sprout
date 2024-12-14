@@ -5,6 +5,21 @@ import "./PledgeForm.css";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/use-auth.js";
 import { Link } from "react-router-dom";
+import z from "zod";
+
+const pledgeSchema = z.object({
+  amount: z
+    .string()
+    .transform((value) => parseFloat(value))
+    .refine((amount) => amount > 0, {
+      message: "Pledge amount must be more than $0",
+    }),
+  comment: z
+    .string()
+    .min(1, { message: "Please enter a valid comment or leave it empty" })
+    .optional(),
+});
+
 function PledgeForm() {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
@@ -30,7 +45,14 @@ function PledgeForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (pledge.amount && pledge.anonymous) {
+    const result = pledgeSchema.safeParse(pledge);
+    if (!result.success) {
+      const error = result.error.errors?.[0];
+      if (error) {
+        alert(error.message);
+      }
+      return;
+    } else {
       try {
         await postPledge(
           pledge.amount,
@@ -92,6 +114,7 @@ function PledgeForm() {
                   value="false"
                   name="anonymous"
                   onChange={handleSelect}
+                  checked
                 />
               </div>
               <div>

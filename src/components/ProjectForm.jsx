@@ -3,6 +3,31 @@ import postProject from "../api/post-project.js";
 import useCategories from "../hooks/use-categories.js";
 import { useNavigate } from "react-router-dom";
 import "./ProjectForm.css";
+import z from "zod";
+
+const projectSchema = z.object({
+  title: z.string().min(5, { message: "Description must not be empty" }),
+  description: z
+    .string()
+    .min(10, { message: "Description must be at least 5 characters long" }),
+  goal: z
+    .string()
+    .transform((val) => parseFloat(val))
+    .refine((goal) => goal >= 1, {
+      message: "Goal must be at least $1",
+    }),
+  image: z.string().min(1, {
+    message:
+      "Image field can't be empty. Plus, it will make your project a lot prettier",
+  }),
+  suburb: z.string().min(1, { message: "Suburb cannot be empty" }),
+  postcode: z
+    .string()
+    .transform((val) => parseFloat(val))
+    .refine((val) => val > 0, { message: "Postcode must be valid" }),
+  state: z.string().min(1, { message: "Please select a state" }),
+});
+
 function ProjectForm() {
   const navigate = useNavigate();
   const { categories } = useCategories();
@@ -40,17 +65,14 @@ function ProjectForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      projectDetails.title &&
-      projectDetails.description &&
-      projectDetails.goal &&
-      projectDetails.image &&
-      projectDetails.category &&
-      projectDetails.suburb &&
-      projectDetails.postcode &&
-      projectDetails.country &&
-      projectDetails.state
-    ) {
+    const result = projectSchema.safeParse(projectDetails);
+    if (!result.success) {
+      const error = result.error.errors?.[0];
+      if (error) {
+        alert(error.message);
+      }
+      return;
+    } else {
       postProject(
         projectDetails.title,
         projectDetails.description,
@@ -63,9 +85,11 @@ function ProjectForm() {
         projectDetails.postcode,
         projectDetails.country,
         projectDetails.state
-      ).then((response) => {
-        navigate("/project/" + response.id);
-      });
+      )
+        .then((response) => {
+          navigate("/project/" + response.id);
+        })
+        .catch((error) => alert(error));
     }
   };
 
@@ -113,8 +137,8 @@ function ProjectForm() {
             </div>
             <div className="input-box-project">
               <label htmlFor="category">Category</label>
-              <select onChange={onChangeHandler} defaultValue={"DEFAULT"}>
-                <option value="DEFAULT" disabled>
+              <select onChange={onChangeHandler} defaultValue="0">
+                <option value="0" disabled>
                   --select a category--
                 </option>
                 {categories.map((categoriesData, key) => {

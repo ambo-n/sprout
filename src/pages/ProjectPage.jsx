@@ -11,7 +11,6 @@ import PledgeForm from "../components/PledgeForm";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
-// import ProgressBar from "../components/ProgressBar";
 
 function ProjectPage() {
   const navigate = useNavigate();

@@ -8,13 +8,17 @@
 }
 
 .navbar {
-  min-height: 70px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0 24px;
+  padding: 0.5rem 1rem;
   border: 2px solid rgb(170, 224, 185);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
 }
 
 .navbar a {
@@ -28,4 +32,58 @@
   text-decoration: underline;
   background-color: rgb(228, 140, 161);
   color: black;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 4px 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 1rem 0;
+  border-top: 2px solid rgb(170, 224, 185);
+}
+
+.nav-links a {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.nav-links a:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
 }

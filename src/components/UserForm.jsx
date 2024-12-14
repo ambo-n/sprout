@@ -49,13 +49,14 @@ function UserForm() {
         return postLogin(result.data.username, result.data.password)
           .then((responseLogin) => {
             window.localStorage.setItem("token", responseLogin.token);
+            window.localStorage.setItem("user_id", responseLogin.user_id);
             setAuth({
               token: responseLogin.token,
             });
             navigate("/");
           })
           .catch((error) => {
-            console.error("Error during sign-up/login:", error);
+            alert(error);
           });
       });
     }

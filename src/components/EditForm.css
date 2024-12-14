@@ -1,0 +1,18 @@
+.update-project-form {
+  margin: 2rem;
+}
+.button-div {
+  display: flex;
+  flex-direction: column;
+}
+.button-div button {
+  width: 40%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  margin: 40px 40px 0 0;
+  cursor: pointer;
+  font-weight: 500;
+  background: linear-gradient(rgb(212, 238, 117), green);
+}
