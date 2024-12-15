@@ -41,24 +41,28 @@ function UserForm() {
       }
       return;
     } else {
-      postUser(
-        result.data.username,
-        result.data.password,
-        result.data.email
-      ).then(() => {
-        return postLogin(result.data.username, result.data.password)
-          .then((responseLogin) => {
-            window.localStorage.setItem("token", responseLogin.token);
-            window.localStorage.setItem("user_id", responseLogin.user_id);
-            setAuth({
-              token: responseLogin.token,
+      postUser(result.data.username, result.data.password, result.data.email)
+        .then(() => {
+          return postLogin(result.data.username, result.data.password)
+            .then((responseLogin) => {
+              window.localStorage.setItem("token", responseLogin.token);
+              window.localStorage.setItem("user_id", responseLogin.user_id);
+              setAuth({
+                token: responseLogin.token,
+              });
+              navigate("/");
+            })
+            .catch((error) => {
+              alert(
+                `Login failed: ${
+                  error.response?.data?.message || error.message
+                }`
+              );
             });
-            navigate("/");
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 

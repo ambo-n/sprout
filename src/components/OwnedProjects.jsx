@@ -23,9 +23,13 @@ function OwnedProjects() {
   if (isLoading) {
     return (
       <div>
-        <h2>Getting your info</h2>
+        <h2>Getting your projects</h2>
       </div>
     );
+  }
+
+  if (error) {
+    console.log(error.message);
   }
 
   const handleDelete = (projectId) => {

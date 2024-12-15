@@ -13,7 +13,11 @@ function UserDashboard() {
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return (
+      <p className="error-container">
+        Error: {error.message}. Please Sign in {<Link to="/login">here</Link>}.
+      </p>
+    );
   }
 
   return (

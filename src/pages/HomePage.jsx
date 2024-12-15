@@ -4,7 +4,22 @@ import "./HomePage.css";
 import banner from "../assets/banner.jpg";
 import { Typewriter } from "react-simple-typewriter";
 function HomePage() {
-  const { projects } = useProjects();
+  const { projects, isLoading, error } = useProjects();
+
+  if (isLoading) {
+    return (
+      <div>
+        <img
+          src="https://i.pinimg.com/originals/d9/f2/15/d9f21515b1e38d83e94fdbce88f623b6.gif"
+          alt="loading"
+        />
+      </div>
+    );
+  }
+
+  if (error) {
+    alert(error.message);
+  }
 
   return (
     <div>

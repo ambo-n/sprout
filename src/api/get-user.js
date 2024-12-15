@@ -3,7 +3,7 @@ async function getUser(userId) {
   const response = await fetch(url, { method: "GET" });
 
   if (!response.ok) {
-    const fallbackError = `Error fetching user details}`;
+    const fallbackError = `Error fetching user details`;
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);
     });

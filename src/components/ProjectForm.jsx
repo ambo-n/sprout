@@ -6,7 +6,7 @@ import "./ProjectForm.css";
 import z from "zod";
 
 const projectSchema = z.object({
-  title: z.string().min(5, { message: "Description must not be empty" }),
+  title: z.string().min(5, { message: "Title must not be empty" }),
   description: z
     .string()
     .min(10, { message: "Description must be at least 5 characters long" }),

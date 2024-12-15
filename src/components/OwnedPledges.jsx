@@ -6,6 +6,14 @@ function OwnedPledges() {
   const userId = parseInt(window.localStorage.getItem("user_id"));
   const { pledge, isLoading, error } = usePledge();
 
+  if (isLoading) {
+    return <p>Fetching the data</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
   return (
     <div className="owned-pledge-container ">
       <ul>

@@ -10,6 +10,10 @@ h2 {
 a {
   text-decoration: none;
 }
+.error-container {
+  padding-top: 60px;
+  margin: 2rem;
+}
 
 .dashboard-container {
   display: flex;
