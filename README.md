@@ -1,7 +1,9 @@
 # Crowdfunding Front End
 
 **Amber Nguyen**
-Deployed Site: https://ambon-sprout.netlify.app/
+
+- Deployed Site: https://ambon-sprout.netlify.app/
+- Backend Repo: https://github.com/ambo-n/crowdfunding_back_end
 
 ## Concept/Name
 
