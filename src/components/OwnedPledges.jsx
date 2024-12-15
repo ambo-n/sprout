@@ -16,7 +16,7 @@ function OwnedPledges() {
                 You have donated ${pledgeData.amount} to{" "}
                 {
                   <Link to={`/project/${pledgeData.project}`}>
-                    {pledgeData.project}
+                    {pledgeData.project_title}
                   </Link>
                 }{" "}
               </li>
