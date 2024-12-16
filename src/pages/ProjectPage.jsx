@@ -108,21 +108,26 @@ function ProjectPage() {
             <h2>Pledges:</h2>
             <div>
               <ul>
-                {project.pledges.map((pledgeData, key) => {
-                  if (pledgeData.anonymous === false) {
-                    return (
-                      <li key={key}>
-                        ${pledgeData.amount} from {pledgeData.username}{" "}
-                      </li>
-                    );
-                  } else {
-                    return (
-                      <li key={key}>
-                        ${pledgeData.amount} from a secret supporter
-                      </li>
-                    );
-                  }
-                })}
+                {" "}
+                {project.pledges.length === 0 ? (
+                  <p>No pledges yet. Be the first to support this project!</p>
+                ) : (
+                  project.pledges.map((pledgeData, key) => {
+                    if (pledgeData.anonymous === false) {
+                      return (
+                        <li key={key}>
+                          ${pledgeData.amount} from {pledgeData.username}{" "}
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li key={key}>
+                          ${pledgeData.amount} from a secret supporter
+                        </li>
+                      );
+                    }
+                  })
+                )}
               </ul>
             </div>
           </div>
